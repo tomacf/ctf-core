@@ -1,0 +1,49 @@
+version: '2'
+
+services:
+
+  p00-warmup:
+    build: ./p00-warmup/.
+    restart: on-failure
+    ports:
+      - "50000:80"
+    network_mode: bridge
+
+  p01-firmware:
+    build: ./p01-firmware/.
+    restart: on-failure
+    ports:
+      - "50100:8000"
+    network_mode: bridge
+
+  p02-sandbox:
+    build: ./p02-sandbox/.
+    restart: on-failure
+    ports:
+      - "50200:80"
+    network_mode: bridge
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+  
+  p03-imagemanipulator:
+    build: ./p03-imagemanipulator/.
+    restart: on-failure
+    ports:
+      - "50300:80"
+    network_mode: bridge
+
+  p04-coderunner:
+    build: ./p04-coderunner/.
+    restart: on-failure
+    ports:
+      - "50400:80"
+    network_mode: bridge
+
+  p07-exifreader: 
+    build: ./p07-exifreader/.
+    restart: on-failure
+    ports:
+      - "50700:8000"
+    network_mode: bridge
