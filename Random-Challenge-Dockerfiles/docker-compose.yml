@@ -1,0 +1,33 @@
+version: '2'
+
+services:
+  2018-suctf-homework-mysql:
+    image: mysql:5.6
+    restart: always
+    volumes:
+      - ./web/2018-suctf-homework/database.sql:/docker-entrypoint-initdb.d/database.sql
+      - 2018-suctf-homework-volume:/var/lib/mysql
+      - ./mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
+    environment:
+      - MYSQL_DATABASE=ctf
+      - MYSQL_ROOT_PASSWORD=root
+  2018-suctf-homework-web:
+    build: ./web/2018-suctf-homework/.
+    depends_on:
+      - 2018-suctf-homework-mysql
+    ports:
+      - '60000:80'
+    volumes:
+      - ./source:/var/www/html
+      - ./logs:/var/log/apache2
+    stdin_open: true
+
+  2019-ogeek-AndroidPHP:
+    build: ./web/2019-ogeek-AndroidPHP/.
+    restart: always
+    ports:
+      - "60010:80"
+
+
+volumes:
+  2018-suctf-homework-volume:

@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+    misc:
+        build: .
+        ports:
+            - '30000:22'
+        stdin_open: true
+        tty: true
