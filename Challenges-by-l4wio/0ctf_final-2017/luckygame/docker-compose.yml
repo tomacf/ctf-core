@@ -1,0 +1,42 @@
+version: '3.1'
+services:
+    luckygame:
+        build:  .
+        environment:
+          MYSQL_USER: strange_slime
+          MYSQL_PASSWORD: temp3st_infinite
+          MYSQL_ROOT_PASSWORD: temp3st_infinite
+          MYSQL_DATABASE: luckygame
+        volumes: 
+            - .:/var/www/html
+        ports:
+            - "3700:80"
+        depends_on:
+            - luckygame-mysql
+        links:
+            - luckygame-mysql:luckygame-mysql
+        networks:
+            - luckygame
+
+# works
+    luckygame-mysql:
+        image: mysql:5.7
+        command: --default-authentication-plugin=mysql_native_password --innodb-use-native-aio=0
+        environment:
+          MYSQL_USER: strange_slime
+          MYSQL_PASSWORD: temp3st_infinite
+          MYSQL_ROOT_PASSWORD: temp3st_infinite
+          MYSQL_DATABASE: luckygame
+        ports:
+            - "3710:3306"
+        networks:
+            - luckygame
+        volumes:
+            - luckygame-db:/var/lib/mysql
+            # - "./0x3004/200-XYZBANK/dump.sql:/docker-entrypoint-initdb.d/1.sql"
+
+volumes:
+  luckygame-db:
+
+networks:
+  luckygame:

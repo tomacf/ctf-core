@@ -1,0 +1,22 @@
+{
+  "name": "loginme",
+  "version": "1.0.0",
+  "description": "http://202.120.7.194:8081",
+  "main": "loginme.js",
+  "scripts": {
+    "debug": "node loginme.js",
+    "start": "nodemon loginme.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "moment": "^2.29.3",
+    "mongodb": "^4.5.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}

@@ -1,0 +1,20 @@
+[DEUBG] login: 127.0.0.1 -> [u'dddd', u'dddd', u'ddd']
+[DEUBG] login: 127.0.0.1 -> [u'dddddddd', u'ddd', u'ddd']
+[DEUBG] login: 127.0.0.1 -> [u'superuser', u'test', u'2022']
+[DEUBG] info: 127.0.0.1 -> ["superuser", "test", "2022"]
+--> Result: (u'superuser', u'test', u'2022')
+[DEUBG] login: 127.0.0.1 -> [u'superuser', u'test', u'2022']
+[DEUBG] info: 127.0.0.1 -> ["superuser", "test", "2022"]
+--> Result: (u'superuser', u'test', u'2022')
+[DEUBG] login: 127.0.0.1 -> [u'admin', u'test3', u'2022']
+[DEUBG] info: 127.0.0.1 -> ["admin", "test3", "2022"]
+--> Result: (u'admin', u'test3', u'2022')
+[DEUBG] info: 127.0.0.1 -> ["admin", "test3", "2022"]
+--> Result: (u'admin', u'test3', u'2022', 1)
+[DEUBG] login: 127.0.0.1 -> [u'superuser', u'test', u'2022']
+[DEUBG] info: 127.0.0.1 -> ["superuser", "test", "2022"]
+--> Result: (u'superuser', u'test', u'2022', 1)
+[DEUBG] info: 127.0.0.1 -> ["superuser", "test", "2022"]
+[DEUBG] login: 127.0.0.1 -> [u'superuser', u'dddd', u'122']
+[DEUBG] login: 127.0.0.1 -> [u'toma.cristini@gmail.com', u'', u'']
+[DEUBG] login: 127.0.0.1 -> [u'toma.cristini@gmail.com', u'', u'ff']

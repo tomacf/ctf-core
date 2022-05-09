@@ -1,0 +1,110 @@
+version: '3.1'
+services:
+
+# works
+    150-prisonbreakseason2:
+        build: ./0x3004/150-prisonbreakseason2/.
+        ports:
+            - "30000:3500"
+# works
+    200-xyzbank-server:
+        build: ./0x3004/200-XYZBANK/.
+        ports:
+            - "30010:3580"
+        networks:
+            - 200-xyzbank
+        depends_on:
+            - 200-xyzbank-mysql
+        links:
+            - "200-xyzbank-mysql:database"
+# works but no solutions
+    250-xyztemplate-server:
+        build: ./0x3004/250-XYZTemplate/.
+        ports:
+            - "30020:4000"
+# works but didnt get it
+    cryptowww:
+        build:  ./0x3004/cryptowww/.
+        ports:
+            - "30030:80"
+# works looks like I can solve it, have to spend time on it
+    curl_story_part1:
+        build:  ./challs.manhluat.org/curl_story_part_1/.
+        ports:
+            - "30040:80"
+
+    luckygame:
+        build:  ./0ctf_final-2017/luckygame/.
+        environment:
+            MYSQL_USER: strange_slime
+            MYSQL_PASSWORD: temp3st_infinite
+            MYSQL_ROOT_PASSWORD: temp3st_infinite
+            MYSQL_DATABASE: luckygame
+        volumes: 
+            - .:/var/www/html
+        ports:
+            - "30050:80"
+        depends_on:
+            - luckygame-mysql
+        links:
+            - luckygame-mysql:luckygame-mysql
+        networks:
+            - luckygame
+#works but index.html to improve and idk whats the point            
+    loginme:
+        build: .
+        ports:
+        - "30060:8081"
+        depends_on:
+        - "loginme-mongo"
+        volumes:
+        - .:/usr/src/app
+        - /usr/src/app/node_modules
+        networks:
+        - loginme
+
+# databases
+    200-xyzbank-mysql:
+        image: mysql:latest
+        restart: always
+        environment:
+          MYSQL_USER: strange_dragon
+          MYSQL_PASSWORD: how_d0_you_turn_THIS_on
+          MYSQL_ROOT_PASSWORD: how_d0_you_turn_THIS_on
+          MYSQL_DATABASE: unit_cyber_db
+        ports:
+            - "3300:3306"
+        networks:
+            - 200-xyzbank
+        volumes:
+            - "./0x3004/200-XYZBANK/dump.sql:/docker-entrypoint-initdb.d/1.sql"
+            - 200-xyzbank-db:/var/lib/mysql
+    luckygame-mysql:
+        image: mysql:5.7
+        command: --default-authentication-plugin=mysql_native_password --innodb-use-native-aio=0
+        environment:
+          MYSQL_USER: strange_slime
+          MYSQL_PASSWORD: temp3st_infinite
+          MYSQL_ROOT_PASSWORD: temp3st_infinite
+          MYSQL_DATABASE: luckygame
+        ports:
+            - "3710:3306"
+        networks:
+            - luckygame
+        volumes:
+            - luckygame-db:/var/lib/mysql
+    loginme-mongo:
+        image: "mongo"
+        ports:
+        - "27017:27017"
+        networks:
+        - loginme
+
+volumes:
+  200-xyzbank-db:
+  luckygame-db:
+
+networks:
+  200-xyzbank:
+  luckygame:
+  loginme:

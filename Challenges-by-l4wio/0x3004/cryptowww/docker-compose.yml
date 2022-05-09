@@ -1,0 +1,6 @@
+version: '3.1'
+services:
+  cryptowww:
+    build: .
+    ports:
+            - "3650:80"
