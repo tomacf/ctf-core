@@ -1,0 +1,59 @@
+version: '2'
+
+services:
+
+  agent407:
+    build: ./agent407/.
+    restart: on-failure
+    ports:
+      - "20000:80"
+    network_mode: bridge
+
+  darkbins:
+    build: ./darkbins/.
+    restart: on-failure
+    ports:
+      - "20010:80"
+    network_mode: bridge
+
+  diffie:
+    build: ./diffie/.
+    restart: on-failure
+    ports:
+      - "20020:80"
+    network_mode: bridge
+  
+  ebook:
+    build: ./ebook/.
+    restart: on-failure
+    ports:
+      - "20030:80"
+    network_mode: bridge
+
+  enigma:
+    build: ./enigma/.
+    restart: on-failure
+    ports:
+      - "20040:80"
+    network_mode: bridge
+  
+  gillette:
+    build: ./gillette/.
+    restart: on-failure
+    ports:
+      - "20050:80"
+    network_mode: bridge
+
+  giveme:
+    build: ./giveme/.
+    restart: on-failure
+    ports:
+      - "20060:80"
+    network_mode: bridge
+
+  origin:
+    build: ./origin/.
+    restart: on-failure
+    ports:
+      - "20070:80"
+    network_mode: bridge
