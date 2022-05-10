@@ -159,14 +159,14 @@ void route()
            {
                printf("HTTP/1.1 200 OK\r\n\r\n");
                fflush(stdout);
-               printf("<script>alert('Wrong!'); window.location.href = '/';</script>");
+               printf("<script>alert('Wrong!'); window.location.href = '/firmware';</script>");
            }
        }
        else
        {
            printf("HTTP/1.1 200 OK\r\n\r\n");
            fflush(stdout);
-           printf("<script>window.location.href = '/';</script>");   
+           printf("<script>window.location.href = '/firmware';</script>");   
        }
     }
   

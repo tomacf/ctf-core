@@ -192,8 +192,8 @@ services:
     ports:
       - '10210-10220:80'
     volumes:
-      - ./source:/var/www/html
-      - ./logs:/var/log/apache2
+      - ./Random-Challenge-Dockerfiles/web/2018-suctf-homework/source/:/var/www/html
+      - ./Random-Challenge-Dockerfiles/web/2018-suctf-homework/logs:/var/log/apache2
     stdin_open: true
 
   1506-ogeek:
@@ -234,6 +234,7 @@ services:
           - luckygame
       volumes:
           - luckygame-db:/var/lib/mysql
+          - ./Challenges-by-l4wio/0ctf_final-2017/luckygame/dump.sql:/docker-entrypoint-initdb.d/1.sql"
 
   2018-suctf-homework-mysql:
     image: mysql:5.6

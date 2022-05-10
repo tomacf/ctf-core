@@ -25,7 +25,7 @@ COPY src/usr/bin/gs /usr/bin/gs
 
 # Flag placeholder
 RUN mkdir /var/flag
-RUN printf "CJ2018{flag}" > /var/flag/00000000000000000000000000000000
+RUN printf "CYBER{Study session}" > /var/flag/00000000000000000000000000000000
 RUN chmod -R 555 /var/flag
 
 # Finishing

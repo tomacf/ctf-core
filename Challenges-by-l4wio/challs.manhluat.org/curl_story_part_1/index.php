@@ -1,4 +1,4 @@
-<pre><title>Holes protector! by _ML</title><h1>Holes protector!</h1><a href='./?url=localhost/_ML/challs/curl_story_part_1/admin.php'><h1>DEMO</h1></a>
+<pre><title>Holes protector! by _ML</title><h1>Holes protector!</h1><a href='./?url=localhost/curlstory/admin.php'><h1>DEMO</h1></a>
 <h2>Hall of Fame (cURL Lovers):
 <!-- 1st: <a href='http://raz0r.name'>Raz0r</a> (second solution)
 2nd: <a href="https://twitter.com/Paul_Axe">@Paul_Axe</a> (first solution)

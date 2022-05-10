@@ -42,7 +42,7 @@ def login_query(params):
 @app.route('/',methods=['GET'])
 def index():
 	if 'credential' in request.cookies:
-		return redirect('/info')
+		return redirect('/xyzbank/info')
 	return render_template('index.html')
 
 @app.route('/logout')
@@ -59,7 +59,7 @@ def login():
 	signin = login_query(login_credential)
 	if signin is None:
 		return render_template('index.html',error=WRONG_CRE,charset='utf-8')
-	resp = make_response(redirect('/info'))
+	resp = make_response(redirect('/xyzbank/info'))
 	resp.set_cookie('credential',b64encode(dumps(login_credential))) 
 	return resp
 	
@@ -68,7 +68,7 @@ def info():
 
 	try: credential = loads(b64decode(request.cookies.get('credential')))
 	except:	credential = []
-	if len(credential) != 3: return redirect('/logout')
+	if len(credential) != 3: return redirect('/xyzbank/logout')
 	app.logger.warning('[DEUBG] info: %s -> %s' % (request.remote_addr,str(b64decode(request.cookies.get('credential')))))
 	info = login_query(credential)
 	app.logger.warning('--> Result: %s' % str(info))

@@ -33,7 +33,7 @@ services:
             - luckygame
         volumes:
             - luckygame-db:/var/lib/mysql
-            # - "./0x3004/200-XYZBANK/dump.sql:/docker-entrypoint-initdb.d/1.sql"
+            - "./dump.sql:/docker-entrypoint-initdb.d/1.sql"
 
 volumes:
   luckygame-db:
