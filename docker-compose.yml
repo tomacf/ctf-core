@@ -2,72 +2,77 @@ version: '2'
 
 services:
 
+  ####################### bsides-cpt-ctf
+
   agent407:
     build: ./bsides-cpt-ctf-2019/agent407/.
     restart: on-failure
     ports:
-      - "20000:80"
+      - "10000-10010:80"
     network_mode: bridge
 
   darkbins:
     build: ./bsides-cpt-ctf-2019/darkbins/.
     restart: on-failure
     ports:
-      - "20010:80"
+      - "10010-10020:80"
     network_mode: bridge
 
   diffie:
     build: ./bsides-cpt-ctf-2019/diffie/.
     restart: on-failure
     ports:
-      - "20020:80"
+      - "10020-10030:80"
     network_mode: bridge
   
   ebook:
     build: ./bsides-cpt-ctf-2019/ebook/.
     restart: on-failure
     ports:
-      - "20030:80"
+      - "10030-10040:80"
     network_mode: bridge
 
   enigma:
     build: ./bsides-cpt-ctf-2019/enigma/.
     restart: on-failure
     ports:
-      - "20040:80"
+      - "10040-10050:80"
     network_mode: bridge
   
   gillette:
     build: ./bsides-cpt-ctf-2019/gillette/.
     restart: on-failure
     ports:
-      - "20050:80"
+      - "10050-10060:80"
     network_mode: bridge
 
   giveme:
     build: ./bsides-cpt-ctf-2019/giveme/.
     restart: on-failure
     ports:
-      - "20060:80"
+      - "10060-10070:80"
     network_mode: bridge
 
   origin:
     build: ./bsides-cpt-ctf-2019/origin/.
     restart: on-failure
     ports:
-      - "20070:80"
+      - "10070-10080:80"
     network_mode: bridge
 
-# works
+  ######################## Challenges-by-l4wio
+
   150-prisonbreakseason2:
       build: ./Challenges-by-l4wio/0x3004/150-prisonbreakseason2/.
+      restart: on-failure
       ports:
-          - "30000:3500"
+          - "10080-10090:3500"
 # works
   200-xyzbank-server:
       build: ./Challenges-by-l4wio/0x3004/200-XYZBANK/.
+      restart: on-failure
       ports:
-          - "30010:3580"
+          - "10090-10100:3580"
       networks:
           - 200-xyzbank
       depends_on:
@@ -77,21 +82,25 @@ services:
 # works but no solutions
   250-xyztemplate-server:
       build: ./Challenges-by-l4wio/0x3004/250-XYZTemplate/.
+      restart: on-failure
       ports:
-          - "30020:4000"
+          - "10100-10110:4000"
 # works but didnt get it
   cryptowww:
       build:  ./Challenges-by-l4wio/0x3004/cryptowww/.
+      restart: on-failure
       ports:
-          - "30030:80"
+          - "10110-10120:80"
 # works looks like I can solve it, have to spend time on it
   curl_story_part1:
       build:  ./Challenges-by-l4wio/challs.manhluat.org/curl_story_part_1/.
+      restart: on-failure
       ports:
-          - "30040:80"
+          - "10120-10130:80"
 
   luckygame:
       build:  ./Challenges-by-l4wio/0ctf_final-2017/luckygame/.
+      restart: on-failure
       environment:
           MYSQL_USER: strange_slime
           MYSQL_PASSWORD: temp3st_infinite
@@ -100,7 +109,7 @@ services:
       volumes: 
           - ./Challenges-by-l4wio/0ctf_final-2017/luckygame/.:/var/www/html
       ports:
-          - "30050:80"
+          - "10130-10140:80"
       depends_on:
           - luckygame-mysql
       links:
@@ -110,75 +119,40 @@ services:
 #works but index.html to improve and idk whats the point            
   loginme:
       build: ./Challenges-by-l4wio/0ctf_quals-2018/LoginMe/.
+      restart: on-failure
       ports:
-      - "30060:8081"
+      - "10140-10150:8081"
       depends_on:
       - "loginme-mongo"
+      links:
+      - loginme-mongo:loginme-mongo
       volumes:
       - ./Challenges-by-l4wio/0ctf_quals-2018/LoginMe/.:/usr/src/app
       - /usr/src/app/node_modules
       networks:
       - loginme
 
-# databases
-  200-xyzbank-mysql:
-      image: mysql:latest
-      restart: always
-      environment:
-        MYSQL_USER: strange_dragon
-        MYSQL_PASSWORD: how_d0_you_turn_THIS_on
-        MYSQL_ROOT_PASSWORD: how_d0_you_turn_THIS_on
-        MYSQL_DATABASE: unit_cyber_db
-      ports:
-          - "3300:3306"
-      networks:
-          - 200-xyzbank
-      volumes:
-          - "./Challenges-by-l4wio/0x3004/200-XYZBANK/dump.sql:/docker-entrypoint-initdb.d/1.sql"
-          - 200-xyzbank-db:/var/lib/mysql
-
-  luckygame-mysql:
-      image: mysql:5.7
-      command: --default-authentication-plugin=mysql_native_password --innodb-use-native-aio=0
-      environment:
-        MYSQL_USER: strange_slime
-        MYSQL_PASSWORD: temp3st_infinite
-        MYSQL_ROOT_PASSWORD: temp3st_infinite
-        MYSQL_DATABASE: luckygame
-      ports:
-          - "3710:3306"
-      networks:
-          - luckygame
-      volumes:
-          - luckygame-db:/var/lib/mysql
-
-  loginme-mongo:
-      image: "mongo"
-      ports:
-      - "27017:27017"
-      networks:
-      - loginme
-
+  ########################CJ2018
 
   p00-warmup:
     build: ./CJ2018/p00-warmup/.
     restart: on-failure
     ports:
-      - "50000:80"
+      - "10150-10160:80"
     network_mode: bridge
 
   p01-firmware:
     build: ./CJ2018/p01-firmware/.
     restart: on-failure
     ports:
-      - "50001:8000"
+      - "10160-10170:8000"
     network_mode: bridge
 
   p02-sandbox:
     build: ./CJ2018/p02-sandbox/.
     restart: on-failure
     ports:
-      - "50002:80"
+      - "10170-10180:80"
     network_mode: bridge
     cap_add:
       - SYS_PTRACE
@@ -189,23 +163,78 @@ services:
     build: ./CJ2018/p03-imagemanipulator/.
     restart: on-failure
     ports:
-      - "50003:80"
+      - "10180-10190:80"
     network_mode: bridge
 
   p04-coderunner:
     build: ./CJ2018/p04-coderunner/.
     restart: on-failure
     ports:
-      - "50004:80"
+      - "10190-10200:80"
     network_mode: bridge
 
   p07-exifreader: 
     build: ./CJ2018/p07-exifreader/.
     restart: on-failure
     ports:
-      - "50007:8000"
+      - "10200-10210:8000"
     network_mode: bridge
   
+##################### Random-Challenge-Dockerfiles
+
+  2018-suctf-homework-web:
+    build: ./Random-Challenge-Dockerfiles/web/2018-suctf-homework/.
+    restart: on-failure
+    depends_on:
+      - 2018-suctf-homework-mysql
+    links:
+      - 2018-suctf-homework-mysql:homework-mysql
+    ports:
+      - '10210-10220:80'
+    volumes:
+      - ./source:/var/www/html
+      - ./logs:/var/log/apache2
+    stdin_open: true
+
+  2019-ogeek-androidphp:
+    build: ./Random-Challenge-Dockerfiles/web/2019-ogeek-AndroidPHP/.
+    restart: on-failure
+    ports:
+      - "10220-10230:80"
+
+  # databases
+  200-xyzbank-mysql:
+      image: mysql:latest
+      restart: always
+      environment:
+        MYSQL_USER: strange_dragon
+        MYSQL_PASSWORD: how_d0_you_turn_THIS_on
+        MYSQL_ROOT_PASSWORD: how_d0_you_turn_THIS_on
+        MYSQL_DATABASE: unit_cyber_db
+      ports:
+          - "3300-3310:3306"
+      networks:
+          - 200-xyzbank
+      volumes:
+          - "./Challenges-by-l4wio/0x3004/200-XYZBANK/dump.sql:/docker-entrypoint-initdb.d/1.sql"
+          - 200-xyzbank-db:/var/lib/mysql
+
+  luckygame-mysql:
+      image: mysql:5.7
+      command: --default-authentication-plugin=mysql_native_password --innodb-use-native-aio=0
+      restart: always
+      environment:
+        MYSQL_USER: strange_slime
+        MYSQL_PASSWORD: temp3st_infinite
+        MYSQL_ROOT_PASSWORD: temp3st_infinite
+        MYSQL_DATABASE: luckygame
+      ports:
+          - "3710-3720:3306"
+      networks:
+          - luckygame
+      volumes:
+          - luckygame-db:/var/lib/mysql
+
   2018-suctf-homework-mysql:
     image: mysql:5.6
     restart: always
@@ -216,30 +245,20 @@ services:
     environment:
       - MYSQL_DATABASE=ctf
       - MYSQL_ROOT_PASSWORD=root
-  2018-suctf-homework-web:
-    build: ./Random-Challenge-Dockerfiles/web/2018-suctf-homework/.
-    depends_on:
-      - 2018-suctf-homework-mysql
     ports:
-      - '60000:80'
-    volumes:
-      - ./source:/var/www/html
-      - ./logs:/var/log/apache2
-    stdin_open: true
+        - "3720-3730:3306"
 
-  2019-ogeek-androidphp:
-    build: ./Random-Challenge-Dockerfiles/web/2019-ogeek-AndroidPHP/.
-    restart: always
-    ports:
-      - "60010:80"
-
-
+  loginme-mongo:
+      image: "mongo"
+      ports:
+      - "27017:27017"
+      networks:
+      - loginme
 
 volumes:
   200-xyzbank-db:
   luckygame-db:
   2018-suctf-homework-volume:
-
 
 networks:
   200-xyzbank:
