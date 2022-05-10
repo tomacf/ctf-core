@@ -4,56 +4,56 @@ services:
 
   ####################### bsides-cpt-ctf
 
-  agent407:
+  1506-agent407:
     build: ./bsides-cpt-ctf-2019/agent407/.
     restart: on-failure
     ports:
       - "10000-10010:80"
     network_mode: bridge
 
-  darkbins:
+  1506-darkbins:
     build: ./bsides-cpt-ctf-2019/darkbins/.
     restart: on-failure
     ports:
       - "10010-10020:80"
     network_mode: bridge
 
-  diffie:
+  1506-diffie:
     build: ./bsides-cpt-ctf-2019/diffie/.
     restart: on-failure
     ports:
       - "10020-10030:80"
     network_mode: bridge
   
-  ebook:
+  1506-ebook:
     build: ./bsides-cpt-ctf-2019/ebook/.
     restart: on-failure
     ports:
       - "10030-10040:80"
     network_mode: bridge
 
-  enigma:
+  1506-enigma:
     build: ./bsides-cpt-ctf-2019/enigma/.
     restart: on-failure
     ports:
       - "10040-10050:80"
     network_mode: bridge
   
-  gillette:
+  1506-gillette:
     build: ./bsides-cpt-ctf-2019/gillette/.
     restart: on-failure
     ports:
       - "10050-10060:80"
     network_mode: bridge
 
-  giveme:
+  1506-giveme:
     build: ./bsides-cpt-ctf-2019/giveme/.
     restart: on-failure
     ports:
       - "10060-10070:80"
     network_mode: bridge
 
-  origin:
+  1506-origin:
     build: ./bsides-cpt-ctf-2019/origin/.
     restart: on-failure
     ports:
@@ -62,13 +62,13 @@ services:
 
   ######################## Challenges-by-l4wio
 
-  150-prisonbreakseason2:
+  1506-prisonbreak:
       build: ./Challenges-by-l4wio/0x3004/150-prisonbreakseason2/.
       restart: on-failure
       ports:
           - "10080-10090:3500"
 # works
-  200-xyzbank-server:
+  1506-xyzbank:
       build: ./Challenges-by-l4wio/0x3004/200-XYZBANK/.
       restart: on-failure
       ports:
@@ -80,25 +80,25 @@ services:
       links:
           - "200-xyzbank-mysql:database"
 # works but no solutions
-  250-xyztemplate-server:
+  1506-xyztemplate:
       build: ./Challenges-by-l4wio/0x3004/250-XYZTemplate/.
       restart: on-failure
       ports:
           - "10100-10110:4000"
 # works but didnt get it
-  cryptowww:
+  1506-cryptowww:
       build:  ./Challenges-by-l4wio/0x3004/cryptowww/.
       restart: on-failure
       ports:
           - "10110-10120:80"
 # works looks like I can solve it, have to spend time on it
-  curl_story_part1:
+  1506-curlstory:
       build:  ./Challenges-by-l4wio/challs.manhluat.org/curl_story_part_1/.
       restart: on-failure
       ports:
           - "10120-10130:80"
 
-  luckygame:
+  1506-luckygame:
       build:  ./Challenges-by-l4wio/0ctf_final-2017/luckygame/.
       restart: on-failure
       environment:
@@ -117,7 +117,7 @@ services:
       networks:
           - luckygame
 #works but index.html to improve and idk whats the point            
-  loginme:
+  1506-loginme:
       build: ./Challenges-by-l4wio/0ctf_quals-2018/LoginMe/.
       restart: on-failure
       ports:
@@ -134,21 +134,21 @@ services:
 
   ########################CJ2018
 
-  p00-warmup:
+  1506-warmup:
     build: ./CJ2018/p00-warmup/.
     restart: on-failure
     ports:
       - "10150-10160:80"
     network_mode: bridge
 
-  p01-firmware:
+  1506-firmware:
     build: ./CJ2018/p01-firmware/.
     restart: on-failure
     ports:
       - "10160-10170:8000"
     network_mode: bridge
 
-  p02-sandbox:
+  1506-sandbox:
     build: ./CJ2018/p02-sandbox/.
     restart: on-failure
     ports:
@@ -159,21 +159,21 @@ services:
     security_opt:
       - seccomp:unconfined
   
-  p03-imagemanipulator:
+  1506-imagemanipulator:
     build: ./CJ2018/p03-imagemanipulator/.
     restart: on-failure
     ports:
       - "10180-10190:80"
     network_mode: bridge
 
-  p04-coderunner:
+  1506-coderunner:
     build: ./CJ2018/p04-coderunner/.
     restart: on-failure
     ports:
       - "10190-10200:80"
     network_mode: bridge
 
-  p07-exifreader: 
+  1506-exifreader: 
     build: ./CJ2018/p07-exifreader/.
     restart: on-failure
     ports:
@@ -182,7 +182,7 @@ services:
   
 ##################### Random-Challenge-Dockerfiles
 
-  2018-suctf-homework-web:
+  1506-homework:
     build: ./Random-Challenge-Dockerfiles/web/2018-suctf-homework/.
     restart: on-failure
     depends_on:
@@ -196,7 +196,7 @@ services:
       - ./logs:/var/log/apache2
     stdin_open: true
 
-  2019-ogeek-androidphp:
+  1506-ogeek:
     build: ./Random-Challenge-Dockerfiles/web/2019-ogeek-AndroidPHP/.
     restart: on-failure
     ports:
